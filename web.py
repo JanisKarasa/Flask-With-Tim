@@ -1,5 +1,19 @@
-import requests
+from flask import Flask, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Helllo! this is main page <h1>Hello<p1>"
+
+@app.route("/<name>")
+def user(name):
+    return f'Hello {name}!'
+
+@app.route("/admin")
+def admin():
+    return redirect(url_for("home"))
 
 
-r = requests.get("https://coreyms.com")
-print(r.status_code)
+if __name__ == "__main__":
+    app.run()
